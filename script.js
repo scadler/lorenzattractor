@@ -20,8 +20,8 @@ function equation(){
     var green  = Math.sin(Math.PI/2000*i+1)*127+128
     var blue   = Math.sin(Math.PI/2000*i+4+1)*127+128
     var color = "#" + hex(red) + hex(green) + hex(blue)
-    ctx.lineWidth = 1
-    ctx.strokeStyle = color
+    ctx.lineWidth = z/30
+    ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+z/50+")"
     ctx.beginPath()
     ctx.lineTo(x*12+375,y*12+375)
     var dt = 0.01
