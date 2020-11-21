@@ -8,22 +8,21 @@ var s = 10
 var r = 28
 var b = 8/3
 var i = 0
+var a = 0
+var d = 0
 function hex(n){
     var nybHexString = "0123456789ABCDEF";
     return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
   }
 function equation(){
-    
-    // ctx.moveTo((xo*12)+500,yo*12+500)
     i = i+1
     var red   = Math.sin(Math.PI/2000*i+2+1)*127+128
     var green  = Math.sin(Math.PI/2000*i+1)*127+128
     var blue   = Math.sin(Math.PI/2000*i+4+1)*127+128
-    var color = "#" + hex(red) + hex(green) + hex(blue)
-    ctx.lineWidth = z/30
-    ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+z/50+")"
+    ctx.lineWidth = 1 + ((y+80)/90)+")"
+    ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+((y+50)/90)+")"
     ctx.beginPath()
-    ctx.lineTo(x*12+375,y*12+375)
+    ctx.lineTo(x*15+375,z*15+100)
     var dt = 0.01
     var  dx = (s * (y - x)) * dt
     var dy = (((r - z) * x ) - y) * dt
@@ -31,10 +30,10 @@ function equation(){
     x = dx + x
     y = dy + y
     z = dz + z
-    ctx.lineTo(x*12+375,y*12+375)
+    ctx.lineTo(x*15+375,z*15+100)
     ctx.stroke()
-    ctx.fillStyle = "rgba(0, 0, 0, 0.005)"
-    // ctx.fillRect(0,0,1000,1000)
+    ctx.fillStyle = "rgba(0, 0, 0, 0.006)"
+    // ctx.fillRect(0,0,1200,1200)
 }
 
 setInterval(equation)
