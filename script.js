@@ -5,6 +5,7 @@ var n = {
     x: 0.01,
     y: 0,
     z: 0,
+    i: 0,
 }
 var sigma = 10
 var rho = 28
@@ -20,7 +21,7 @@ var graph = {
     fadeOut: false,
     n:1,
 };
-var i = 0
+
 function hex(n){
     var nybHexString = "0123456789ABCDEF";
     return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
@@ -30,10 +31,10 @@ function hex(n){
   //y min -29 max 30 -425.5 442.5
 function equation(){
     graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
-    i +=1
-    var red   = Math.sin(Math.PI/2000*i+2+1)*127+128
-    var green  = Math.sin(Math.PI/2000*i+1)*127+128
-    var blue   = Math.sin(Math.PI/2000*i+4+1)*127+128
+    n.i +=1
+    var red   = Math.sin(Math.PI/2000*n.i+2+1)*127+128
+    var green  = Math.sin(Math.PI/2000*n.i+1)*127+128
+    var blue   = Math.sin(Math.PI/2000*n.i+4+1)*127+128
     var width = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
     var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
     ctx.lineWidth = 0.5 + width
@@ -75,6 +76,7 @@ function reset(){
     n.x = 0.01
     n.y = 0
     n.z = 0
+    n.i = 0
 }
 setInterval(equation)
 
