@@ -1,21 +1,17 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 var ctx = canvas.getContext('2d');
-var x = 0.01
-var y = 0
-var z = 0
+var n = {
+    x: 0.01,
+    y: 0,
+    z: 0,
+}
 var sigma = 10
 var rho = 28
 var beta = 8/3
-var xm = 100
-var xM = 0
-var ym = 100
-var yM = 0
-var zm = 100
-var zM = 0
 //vars n and i are counters
 var graph = {
-    axis : [ [x, y, z], [x, z, y], [y, z, x],],
+    axis : [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x],],
     //these are the maxs of z,y,x * 50 +10
     xOffset: [332.5,332.5,460],   //x, x, y
     yOffset: [460,835,835],   //y, z, z
@@ -33,7 +29,7 @@ function hex(n){
   //x min -21 max 21.5 322.4
   //y min -29 max 30 -425.5 442.5
 function equation(){
-    graph.axis = [ [x, y, z], [x, z, y], [y, z, x] ];
+    graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
     i = (i+1) % 2000
     var red   = Math.sin(Math.PI/2000*i+2+1)*127+128
     var green  = Math.sin(Math.PI/2000*i+1)*127+128
@@ -45,37 +41,13 @@ function equation(){
     ctx.beginPath()
     ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
     var dt = 0.01
-    var  dx = (sigma * (y - x)) * dt
-    var dy = (((rho - z) * x ) - y) * dt
-    var dz = (x * y - beta * z) * dt
-    x = dx + x
-    y = dy + y
-    z = dz + z
-    if(yM < y){
-        yM = y
-        console.log(yM*15+" "+"Ymax")
-    }
-    if(y < ym){
-        ym = y
-        console.log(ym*15+" "+"Ymin")
-    }
-    if(xM < x){
-        xM = x
-        console.log(xM*15+" "+"Xmax")
-    }
-    if(xm > x){
-        xm = x
-        console.log(xm*15+" "+"Xmin")
-    }
-    if(zM < z){
-        zM = z
-        console.log(zM*15+" "+"Zmax")
-    }
-    if(zm > z){
-        zm = z
-        console.log(zm*15+" "+"Zmin")
-    }
-    graph.axis = [ [x, y, z], [x, z, y], [y, z, x] ];
+    var  dx = (sigma * (n.y - n.x)) * dt
+    var dy = (((rho - n.z) * n.x ) - n.y) * dt
+    var dz = (n.x * n.y - beta * n.z) * dt
+    n.x = dx + n.x
+    n.y = dy + n.y
+    n.z = dz + n.z
+    graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
     ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
     ctx.stroke()
     if(graph.fadeOut === true){
@@ -97,7 +69,12 @@ function switchAxis(){
 function toggleFade(){
     graph.fadeOut = !graph.fadeOut
 }
-
+function reset(){
+    clear()
+    n.x = 0.01
+    n.y = 0
+    n.z = 0
+}
 setInterval(equation)
 
 $("button").mousedown(function(e){
