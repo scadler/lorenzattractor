@@ -30,7 +30,7 @@ function hex(n){
   //y min -29 max 30 -425.5 442.5
 function equation(){
     graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
-    i = (i+1) % 2000
+    i +=1
     var red   = Math.sin(Math.PI/2000*i+2+1)*127+128
     var green  = Math.sin(Math.PI/2000*i+1)*127+128
     var blue   = Math.sin(Math.PI/2000*i+4+1)*127+128
@@ -38,6 +38,7 @@ function equation(){
     var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
     ctx.lineWidth = 0.5 + width
     ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
+    // console.log(ctx.strokeStyle)
     ctx.beginPath()
     ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
     var dt = 0.01
