@@ -10,7 +10,6 @@ var n = {
 var sigma = 10
 var rho = 28
 var beta = 8/3
-//vars n and i are counters
 var graph = {
     axis : [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x],],
     //these are the maxs of z,y,x * 50 +10
@@ -28,9 +27,7 @@ function hex(n){
     var nybHexString = "0123456789ABCDEF";
     return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
   }
-  //z min 0 max 55 813
-  //x min -21 max 21.5 322.4
-  //y min -29 max 30 -425.5 442.5
+  //z min 0 max 55 813, x min -21 max 21.5 322.4, y min -29 max 30 -425.5 442.5
 function equation(){
     graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
     var c = 2*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
