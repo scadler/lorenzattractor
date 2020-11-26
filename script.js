@@ -21,6 +21,7 @@ var graph = {
     fadeOut: false,
     n:1,
     drawColors: true,
+    pause: false,
 };
 
 function hex(n){
@@ -81,6 +82,15 @@ function toggleColors(){
     let label = (graph.drawColors === true) ? "Colorful" : "Monochrome"
     $("#colorBtn").text(label)
 }
+function toggleDrawing(){
+   
+}
+function pause(){
+     graph.pause = true;
+}
+function resume(){
+    graph.pause = false;
+}
 function reset(){
     clear()
     n.x = 0.01
@@ -88,7 +98,7 @@ function reset(){
     n.z = 0
     n.i = 0
 }
-setInterval(equation)
+setInterval(function(){if(graph.pause === false){equation()}})
 
 $("button").mousedown(function(e){
     e.preventDefault();
