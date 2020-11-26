@@ -43,10 +43,11 @@ function equation(){
         var blue = 56+(100*c)
     }
     var width = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
-    var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
+    var brightness= 0.8*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.2;
+    //var depth = 3*(0.5+width)+12
     ctx.lineWidth = 0.5 + width
-    ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
-    ctx.fillStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
+    ctx.strokeStyle = "rgb("+Math.floor(red*brightness)+", "+Math.floor(green*brightness)+", "+Math.floor(blue*brightness)+")"
+    ctx.fillStyle = "rgb("+red+", "+green+", "+blue+")"
     if(graph.lines === true){
         ctx.beginPath()
         ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
@@ -65,7 +66,7 @@ function equation(){
     }
     else{
         var widthRect = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n]) + 1.5
-        ctx.fillRect(graph.axis[graph.n][0]*15+graph.xOffset[graph.n], -1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n], widthRect, widthRect)
+        ctx.fillRect(graph.axis[graph.n][0]*depth+graph.xOffset[graph.n], -1*graph.axis[graph.n][1]*depth+graph.yOffset[graph.n], widthRect, widthRect)
     }
 }
 function clear(){
