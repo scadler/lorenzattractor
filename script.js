@@ -81,7 +81,7 @@ function switchAxis(){
 }
 function toggleColors(){
     graph.drawColors = !graph.drawColors 
-    let label = (graph.drawColors === true) ? "Colorful" : "Monochrome"
+    let label = (graph.drawColors === false) ? "Colorful" : "Monochrome"
     $("#colorBtn").text(label)
 }
 function toggleDrawing(){
