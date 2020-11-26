@@ -20,6 +20,7 @@ var graph = {
     minVal: [0,29,21],
     fadeOut: false,
     n:1,
+    drawColors: true,
 };
 
 function hex(n){
@@ -31,10 +32,21 @@ function hex(n){
   //y min -29 max 30 -425.5 442.5
 function equation(){
     graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
-    n.i +=1
-    var red   = Math.sin(Math.PI/2000*n.i+2+1)*127+128
-    var green  = Math.sin(Math.PI/2000*n.i+1)*127+128
-    var blue   = Math.sin(Math.PI/2000*n.i+4+1)*127+128
+    var c = 2*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
+    n.i += 1
+    if(graph.drawColors === true){
+        var red   = Math.sin((Math.PI*c)+2+1)*127+128
+        var green  = Math.sin((Math.PI*c)+1)*127+128
+        var blue   = Math.sin((Math.PI*c)+4+1)*127+128
+    }
+    else if(graph.drawColors === false){
+        var red = 56+(100*c)
+        var green = 56+(100*c)
+        var blue = 56+(100*c)
+    }
+    // var red   = Math.sin(Math.PI/2000*(n.i*c)+2+1)*127+128
+    // var green  = Math.sin(Math.PI/2000*(n.i*c)+1)*127+128
+    // var blue   = Math.sin(Math.PI/2000*(n.i*c)+4+1)*127+128
     var width = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
     var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
     ctx.lineWidth = 0.5 + width
@@ -68,8 +80,10 @@ function switchAxis(){
     clear()
     graph.n = (graph.n+1)%3
 }
-function toggleFade(){
-    graph.fadeOut = !graph.fadeOut
+function toggleColors(){
+    graph.drawColors = !graph.drawColors 
+    let label = (graph.drawColors === true) ? "Colorful" : "Monochrome"
+    $("#colorBtn").text(label)
 }
 function reset(){
     clear()

@@ -12,14 +12,17 @@ canvas{
     margin-top:20px;
     margin-bottom:20px;
     margin-left:20px;
-    height:40px;
+    height:500px;
+    width: calc(100vw - 1020px);
 }
 button{
     border: 2px solid #333333;
-    height:40px;
-    width:160px;
+    height:calc( calc(100vw - 1020px) / 3);
+    width:calc( calc(100vw - 1020px) / 3);
     background-color: #000000;
     color:#333;
+    margin-bottom:20px;
+    margin-left:20px;
     font-size: 20px;
     transition: 0.2s;
     margin-right:20px;
@@ -36,4 +39,10 @@ button:active{
 }
 html{
     background-color: #000000;
+}
+body{
+    display:flex;
+}
+#canvasDiv{
+    width:1000px;
 }

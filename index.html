@@ -7,12 +7,15 @@
 </head>
 
 <body>
-    <canvas id="canvas" height="845" width="845 onkeypress="keyPressed(e)"> </canvas>
+    <div id="canvasDiv">
+        <canvas id="canvas" height="845" width="845 onkeypress="keyPressed(e)"> </canvas>
+    </div>
     <div id="buttons">
         <button onclick="switchAxis()">Switch Axis</button>
         <button onclick="wipe()">Clear Graph</button>
-        <button onclick="toggleFade()">Fade Out</button>
         <button onclick="reset()">Reset</button>
+        <button id="colorBtn" onclick="toggleColors()">Colorful</button>
+
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="script.js"></script>
