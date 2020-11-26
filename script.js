@@ -21,6 +21,7 @@ var graph = {
     n:1,
     drawColors: true,
     pause: false,
+    lines: true,
 };
 
 function hex(n){
@@ -46,8 +47,11 @@ function equation(){
     var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
     ctx.lineWidth = 0.5 + width
     ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
-    ctx.beginPath()
-    ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
+    ctx.fillStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
+    if(graph.lines === true){
+        ctx.beginPath()
+        ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
+    }
     var dt = 0.01
     var  dx = (sigma * (n.y - n.x)) * dt
     var dy = (((rho - n.z) * n.x ) - n.y) * dt
@@ -56,11 +60,14 @@ function equation(){
     n.y = dy + n.y
     n.z = dz + n.z
     graph.axis = [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x] ];
-    ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
-    ctx.stroke()
-    if(graph.fadeOut === true){
-    ctx.fillStyle = "rgba(0, 0, 0, 0.006)"
-    ctx.fillRect(0,0,1200,1200)
+    if(graph.lines === true){
+        ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
+        ctx.stroke()
+    }
+    else{
+        var widthRect = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n]) + 1.5
+        // ctx.fillRect(100, 100, width, width)
+        ctx.fillRect(graph.axis[graph.n][0]*15+graph.xOffset[graph.n], -1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n], widthRect, widthRect)
     }
 }
 function clear(){
@@ -80,13 +87,14 @@ function toggleColors(){
     $("#colorBtn").text(label)
 }
 function toggleDrawing(){
-   
+    graph.pause = !graph.pause;
+    let label = (graph.pause === false) ? "Pause" : "Resume"
+    $("#drawingBtn").text(label)
 }
-function pause(){
-     graph.pause = true;
-}
-function resume(){
-    graph.pause = false;
+function toggleLines(){
+    graph.lines = !graph.lines;
+    let label = (graph.lines === true) ? "Draw Dots" : "Draw Lines"
+    $("#linesBtn").text(label)
 }
 function reset(){
     clear()
