@@ -12,8 +12,7 @@ var rho = 28
 var beta = 8/3
 var graph = {
     axis : [ [n.x, n.y, n.z], [n.x, n.z, n.y], [n.y, n.z, n.x],],
-    //these are the maxs of z,y,x * 50 +10
-    xOffset: [332.5,332.5,460],   //x, x, y
+    xOffset: [332.5,332.5,460],   //x, x, y, these are the maxs of z,y,x * 50 +10
     yOffset: [460,835,835],   //y, z, z
     maxVal: [55,30,21.5], 
     minVal: [0,29,21],
