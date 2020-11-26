@@ -44,14 +44,10 @@ function equation(){
         var green = 56+(100*c)
         var blue = 56+(100*c)
     }
-    // var red   = Math.sin(Math.PI/2000*(n.i*c)+2+1)*127+128
-    // var green  = Math.sin(Math.PI/2000*(n.i*c)+1)*127+128
-    // var blue   = Math.sin(Math.PI/2000*(n.i*c)+4+1)*127+128
     var width = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])
     var opacity = 0.6*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n])+0.4
     ctx.lineWidth = 0.5 + width
     ctx.strokeStyle = "rgba("+red+", "+green+", "+blue+", "+(opacity)+")"
-    // console.log(ctx.strokeStyle)
     ctx.beginPath()
     ctx.lineTo(graph.axis[graph.n][0]*15+graph.xOffset[graph.n],-1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n])
     var dt = 0.01
