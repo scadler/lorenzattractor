@@ -66,7 +66,6 @@ function equation(){
     }
     else{
         var widthRect = 0.5*(graph.axis[graph.n][2]+graph.minVal[graph.n])/(graph.maxVal[graph.n]+graph.minVal[graph.n]) + 1.5
-        // ctx.fillRect(100, 100, width, width)
         ctx.fillRect(graph.axis[graph.n][0]*15+graph.xOffset[graph.n], -1*graph.axis[graph.n][1]*15+graph.yOffset[graph.n], widthRect, widthRect)
     }
 }
